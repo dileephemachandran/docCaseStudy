@@ -124,8 +124,8 @@ class MainActivity : ComponentActivity() {
             verticalArrangement = Arrangement.Top
         ) {
 
-            val DocATitle = "Doctor is consulting ${docAWaitingTime?.value?.patientName}"
-            val DocBTitle = "Doctor is consulting ${docBWaitingTime?.value?.patientName}"
+            val DocATitle = "Doctor A is consulting ${docAWaitingTime?.value?.patientName}"
+            val DocBTitle = "Doctor B is consulting ${docBWaitingTime?.value?.patientName}"
             val remainingTime = "Waiting Time: ${timeConversion(currentTime?.value)}"
 
             Text(
@@ -297,7 +297,9 @@ class MainActivity : ComponentActivity() {
                     trailingIcon = { Icon(Icons.Outlined.ArrowDropDown, null) },
                     readOnly = true,
                     colors = TextFieldDefaults.outlinedTextFieldColors(
-                        unfocusedBorderColor = Color.Blue
+                        unfocusedBorderColor = Color.Blue,
+                        textColor = Color.Black,
+                        containerColor = White
                     )
                 )
                 DropdownMenu(
@@ -316,7 +318,7 @@ class MainActivity : ComponentActivity() {
                             text = {
                                 Text(
                                     text = (entry),
-                                    color = Color.Blue,
+                                    color = Color.Green,
                                     modifier = Modifier
                                         .wrapContentWidth()
                                         .align(Alignment.Start)

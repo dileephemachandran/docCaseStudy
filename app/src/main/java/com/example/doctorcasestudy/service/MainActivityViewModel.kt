@@ -82,7 +82,7 @@ class MainActivityViewModel(activity: Activity) : AndroidViewModel(activity.appl
     }
 
     fun case2StartQueue() {
-        totalTime = 900000
+        totalTime = 960000
 
         CoroutineScope(Dispatchers.Main).launch {
             async { firstDocTimer(doctorList[0]) }
@@ -121,7 +121,7 @@ class MainActivityViewModel(activity: Activity) : AndroidViewModel(activity.appl
 
 
     private fun firstDocTimer(doctorData: DoctorData) {
-        if (patientList.size == docAIndex) {
+        if (patientList.size <= docAIndex) {
             docATimerCountDownTimer?.cancel()
         } else {
             val countDownInterval = 1000L
@@ -150,7 +150,7 @@ class MainActivityViewModel(activity: Activity) : AndroidViewModel(activity.appl
     }
 
     private fun secondDocTimer(doctorData: DoctorData) {
-        if (patientList.size == docBIndex) {
+        if (patientList.size <= docBIndex) {
             docBTimerCountDownTimer?.cancel()
         } else {
             val countDownInterval = 1000L
