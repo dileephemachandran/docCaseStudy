@@ -24,11 +24,10 @@ class MainActivityViewModel(activity: Activity) : AndroidViewModel(activity.appl
     private var docAIndex = 0
     private var docBIndex = 1
     private var totalTime = 0L
-    private val DocAAverageTime = 5000L
-    private val DocBAverageTime = 10000L
+    private val docAAverageTime = 180000L
+    private val docBAverageTime = 240000L
     private var isPatientAdded = false
     private var isCaseStudy1 = true
-//    private var patientList = LinkedList<PatientData>()
 
     private var patientList = LinkedList<PatientData>().apply {
         this.add(PatientData(1, "Patient 1", false))
@@ -54,11 +53,18 @@ class MainActivityViewModel(activity: Activity) : AndroidViewModel(activity.appl
     fun isCaseStudy1(value: Boolean) {
         isCaseStudy1 = value
         patientList = if (value) patientList else patientList2
+        totalCountDownTimer = null
+        docATimerCountDownTimer = null
+        docBTimerCountDownTimer = null
+        totalTime = 0
+        docAIndex = 0
+        docBIndex = 1
+        isPatientAdded = false
     }
 
     private var doctorList = ArrayList<DoctorData>().apply {
-        add(DoctorData(1, "Doctor A", DocAAverageTime))
-        add(DoctorData(2, "Doctor B", DocBAverageTime))
+        add(DoctorData(1, "Doctor A", docAAverageTime))
+        add(DoctorData(2, "Doctor B", docBAverageTime))
     }
 
     fun addPatient(name: String) {
@@ -67,7 +73,7 @@ class MainActivityViewModel(activity: Activity) : AndroidViewModel(activity.appl
     }
 
     fun startQueue() {
-        totalTime = 25000
+        totalTime = 900000
 
         CoroutineScope(Dispatchers.Main).launch {
             async { firstDocTimer(doctorList[0]) }
@@ -76,7 +82,7 @@ class MainActivityViewModel(activity: Activity) : AndroidViewModel(activity.appl
     }
 
     fun case2StartQueue() {
-        totalTime = 30000
+        totalTime = 900000
 
         CoroutineScope(Dispatchers.Main).launch {
             async { firstDocTimer(doctorList[0]) }
