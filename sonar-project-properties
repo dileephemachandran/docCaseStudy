@@ -1,0 +1,4 @@
+sonar.projectKey=dileephemachandran_docCaseStudy
+sonar.organization=dileephemachandran
+sonar.sources=
+sonar.java.binary=target/classes
